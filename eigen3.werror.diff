@@ -1,0 +1,23 @@
+diff -ru eigen3.orig/Eigen/SVD eigen3/Eigen/SVD
+--- eigen3.orig/Eigen/SVD	2017-05-19 14:32:45.876477320 +0200
++++ eigen3/Eigen/SVD	2017-05-19 14:31:23.043719556 +0200
+@@ -1,6 +1,11 @@
+ #ifndef EIGEN_SVD_MODULE_H
+ #define EIGEN_SVD_MODULE_H
+ 
++#pragma GCC diagnostic push
++#pragma GCC diagnostic ignored "-Wignored-attributes"
++#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
++#pragma GCC diagnostic ignored "-Wmisleading-indentation"
++
+ #include "QR"
+ #include "Householder"
+ #include "Jacobi"
+@@ -33,5 +38,7 @@
+ 
+ #include "src/Core/util/ReenableStupidWarnings.h"
+ 
++#pragma GCC diagnostic pop
++
+ #endif // EIGEN_SVD_MODULE_H
+ /* vim: set filetype=cpp et sw=2 ts=2 ai: */
