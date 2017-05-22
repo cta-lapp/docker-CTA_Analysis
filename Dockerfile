@@ -17,6 +17,9 @@ RUN source activate ${CONDA_ENV} \
  && cd swig-${SWIG_VERSION} \
  && source activate ${CONDA_ENV} \
  && ./configure \
+ && cat /proc/cpuinfo \
+ && grep -c '^processor' /proc/cpuinfo` \
+ && echo make -j $((`grep -c '^processor' /proc/cpuinfo` / 2)) \
  && make -j $((`grep -c '^processor' /proc/cpuinfo` / 2)) \
  && make install \
  && rm -rf /tmp swig-${SWIG_VERSION}.tar.gz swig-${SWIG_VERSION}
