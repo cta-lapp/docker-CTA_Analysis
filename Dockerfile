@@ -17,10 +17,7 @@ RUN source activate ${CONDA_ENV} \
  && cd swig-${SWIG_VERSION} \
  && source activate ${CONDA_ENV} \
  && ./configure \
- && cat /proc/cpuinfo \
- && grep -c '^processor' /proc/cpuinfo` \
- && echo make -j $((`grep -c '^processor' /proc/cpuinfo` / 2)) \
- && make -j $((`grep -c '^processor' /proc/cpuinfo` / 2)) \
+ && make -j`grep -c '^processor' /proc/cpuinfo` \
  && make install \
  && rm -rf /tmp swig-${SWIG_VERSION}.tar.gz swig-${SWIG_VERSION}
 
@@ -36,5 +33,5 @@ RUN source activate ${CONDA_ENV} \
  && mkdir build \
  && cd build \
  && cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DRELEASE_MODE=no -DUSE_PYTHON=yes -DEIGEN_INCLUDE_DIR=/opt/conda/envs/${CONDA_ENV}/include -DPYTHON_INCLUDE_DIR=/opt/conda/envs/${CONDA_ENV}/include/python3.5m -DPYTHON_LIBRARY=/opt/conda/envs/${CONDA_ENV}/lib/libpython3.5m.so \
- && make -j $((`grep -c '^processor' /proc/cpuinfo` / 2)) all install \
+ && make -j`grep -c '^processor' /proc/cpuinfo` all install \
  && ldconfig
