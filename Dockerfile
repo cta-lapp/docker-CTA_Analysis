@@ -2,7 +2,7 @@ FROM ctalapp/ctapipe:latest
 MAINTAINER CTA LAPP <cta-pipeline-lapp@in2p3.fr>
 
 ARG CTA_ANALYSIS_CLONE_URL=https://gitlab.in2p3.fr/CTA-LAPP/CTA_Analysis.git
-ARG CTA_ANALYSIS_VERSION=master
+ARG CTA_ANALYSIS_VERSION=v0.1
 ARG SWIG_VERSION=3.0.12
 
 ADD eigen3.werror.diff /tmp/
