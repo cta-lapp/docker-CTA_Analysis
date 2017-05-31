@@ -21,6 +21,7 @@ RUN source activate ${CONDA_ENV} \
  && make -j`grep -c '^processor' /proc/cpuinfo` \
  && make install \
  && rm -rf /tmp swig-${SWIG_VERSION}.tar.gz swig-${SWIG_VERSION} \
+ && cd /opt \
  && git clone https://github.com/google/benchmark.git /opt/benchmark \
  && cd /opt/benchmark \
  && git checkout ${GOOGLE_BENCHMARK_VERSION} \
