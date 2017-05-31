@@ -4,6 +4,7 @@ MAINTAINER CTA LAPP <cta-pipeline-lapp@in2p3.fr>
 ARG CTA_ANALYSIS_CLONE_URL=https://gitlab.in2p3.fr/CTA-LAPP/CTA_Analysis.git
 ARG CTA_ANALYSIS_VERSION=master
 ARG SWIG_VERSION=3.0.12
+ARG GOOGLE_BENCHMARK_VERSION=v1.1.0
 
 ADD eigen3.werror.diff /tmp/
 
@@ -19,7 +20,15 @@ RUN source activate ${CONDA_ENV} \
  && ./configure \
  && make -j`grep -c '^processor' /proc/cpuinfo` \
  && make install \
- && rm -rf /tmp swig-${SWIG_VERSION}.tar.gz swig-${SWIG_VERSION}
+ && rm -rf /tmp swig-${SWIG_VERSION}.tar.gz swig-${SWIG_VERSION} \
+ && git clone https://github.com/google/benchmark.git /opt/benchmark \
+ && cd /opt/benchmark \
+ && git checkout ${GOOGLE_BENCHMARK_VERSION} \
+ && mkdir build \
+ && cd build \
+ && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr .. \
+ && make all install \
+ && rm -rf /opt/benchmark
 
 # Clone CTA_Analysis GIT repository
 RUN source activate ${CONDA_ENV} \
