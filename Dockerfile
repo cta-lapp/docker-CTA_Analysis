@@ -29,7 +29,9 @@ RUN source activate ${CONDA_ENV} \
  && cd build \
  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr .. \
  && make all install \
- && rm -rf /opt/benchmark
+ && rm -rf /opt/benchmark \
+ && cd /opt \
+ && pip install cython
 
 # Clone CTA_Analysis GIT repository
 RUN source activate ${CONDA_ENV} \
