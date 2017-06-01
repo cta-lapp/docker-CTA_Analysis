@@ -31,7 +31,7 @@ RUN source activate ${CONDA_ENV} \
  && make all install \
  && rm -rf /opt/benchmark \
  && cd /opt \
- && pip install cython
+ && pip install cython matplotlib==1.5.2
 
 # Clone CTA_Analysis GIT repository
 RUN source activate ${CONDA_ENV} \
