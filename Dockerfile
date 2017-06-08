@@ -47,3 +47,6 @@ RUN source activate ${CONDA_ENV} \
  && cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DRELEASE_MODE=no -DUSE_PYTHON=yes -DEIGEN_INCLUDE_DIR=/opt/conda/envs/${CONDA_ENV}/include -DPYTHON_INCLUDE_DIR=/opt/conda/envs/${CONDA_ENV}/include/python3.5m -DPYTHON_LIBRARY=/opt/conda/envs/${CONDA_ENV}/lib/libpython3.5m.so \
  && make -j`grep -c '^processor' /proc/cpuinfo` all install \
  && ldconfig
+
+RUN mkdir /tmp ; chmod 777 /tmp ; chmod +t /tmp
+ENV PYTHON_EGG_CACHE=/tmp/.cache
