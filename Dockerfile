@@ -35,7 +35,7 @@ RUN source activate ${CONDA_ENV} \
 
 # Clone CTA_Analysis GIT repository
 RUN source activate ${CONDA_ENV} \
- && conda install pytest
+ && conda install pytest \
  && git clone $CTA_ANALYSIS_CLONE_URL /opt/CTA_Analysis \
  && cd /opt/CTA_Analysis \
  && git checkout $CTA_ANALYSIS_VERSION
