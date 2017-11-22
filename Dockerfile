@@ -10,6 +10,7 @@ ADD eigen3.werror.diff /tmp/
 
 # Install CTA_Analysis dependencies
 RUN source activate ${CONDA_ENV} \
+ && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc \
  && conda install -n ${CONDA_ENV} -c menpo eigen \
  && cd /opt/conda/envs/${CONDA_ENV}/include && patch -p0 </tmp/eigen3.werror.diff \
  && cd /tmp \
